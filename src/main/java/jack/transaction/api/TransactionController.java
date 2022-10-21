@@ -19,11 +19,7 @@ public class TransactionController {
 
     @PostMapping("/add")
     public void addTransaction(@Valid @RequestBody Transaction transaction) {
-        if(transactionRepository.findAll().size() == 0)
-            transaction.setId(String.valueOf(1));
-        else
-            transaction.setId(String.valueOf(transactionRepository.findAll().size() + 1));
-
+        transaction.setId(String.valueOf(transactionRepository.findAll().size() + 1));
         transactionRepository.save(transaction);
     }
 
